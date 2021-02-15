@@ -4,6 +4,7 @@ import {
   Text,
   FlatList,
   ImageBackground,
+  Image,
   BackHandler,
   Alert,
   StatusBar,
@@ -16,6 +17,7 @@ const {height, width} = Dimensions.get('window');
 export function Welcome(props) {
   const flatListRef = React.useRef();
   const {state, setState} = React.useContext(FoodieStockManagerContext);
+  // const [countValue, setCountValue] = React.useState(0);
   const [activeIndex, setActiveIndex] = React.useState(0);
   React.useLayoutEffect(() => {
     props.navigation.setOptions({
@@ -26,18 +28,34 @@ export function Welcome(props) {
   }, [props.navigation]);
 
   const listItems = [
-    {name: 'Protein', image: require('../assets/protien.jpg')},
-    {image: require('../assets/fats.jpg'), name: 'Fats'},
-    {image: require('../assets/vitamins.jpg'), name: 'Vitamins'},
-    {image: require('../assets/minarals.jpg'), name: 'Minerals'},
-    {image: require('../assets/fiber2.jpg'), name: 'Fiber'},
+    {
+      name: 'Protein',
+      image: require('../assets/protien.jpg'),
+      pngImage: require('../assets/protien1.png'),
+    },
+    {
+      image: require('../assets/fats.jpg'),
+      name: 'Fats',
+      pngImage: require('../assets/fats1.png'),
+    },
+    {
+      image: require('../assets/vitamins.jpg'),
+      name: 'Vitamins',
+      pngImage: require('../assets/vitamins1.png'),
+    },
+    {
+      image: require('../assets/minarals.jpg'),
+      name: 'Minerals',
+      pngImage: require('../assets/minarals1.png'),
+    },
+    {
+      image: require('../assets/fiber2.jpg'),
+      name: 'Fiber',
+      pngImage: require('../assets/fiber122.png'),
+    },
   ];
 
-  // console.log(flatListRef.current.scrollToIndex({animated: true, index: 3}))
-
   const renderItem = ({item, index}) => {
-    // setActiveIndex(index);
-
     return (
       <ImageBackground
         source={item.image}
@@ -53,6 +71,14 @@ export function Welcome(props) {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
+          <View style={{position: 'absolute'}}>
+            <Image
+              source={item.pngImage}
+              style={{width: width * 0.5, height: width * 0.5}}
+              resizeMode="stretch"
+            />
+          </View>
+
           <Text
             style={{
               transform: [{rotate: '0deg'}],
@@ -84,10 +110,28 @@ export function Welcome(props) {
             </View>
           ) : null}
         </View>
-        {/* <Text>{item}</Text> */}
       </ImageBackground>
     );
   };
+
+  let countValue = 0;
+  React.useEffect(() => {
+    console.log(countValue, listItems.length);
+    if (countValue < listItems.length - 1) {
+      setInterval(function () {
+        if (countValue <= listItems.length - 1) {
+          flatListRef.current.scrollToIndex({
+            animated: true,
+            index: countValue,
+          });
+          countValue++;
+        }else{
+        }
+      }, 3000);
+    } else {
+      countValue = 0
+    }
+  }, [countValue]);
 
   const handleScroll = (event) => {
     let yOffset = event.nativeEvent.contentOffset.x;
@@ -98,8 +142,7 @@ export function Welcome(props) {
 
   return (
     <View>
-      {/* <Text>HomeScreen</Text> */}
-      <StatusBar barStyle="light-content"/>
+      <StatusBar barStyle="light-content" />
       <FlatList
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
