@@ -20,7 +20,7 @@ export default function Route() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={state["welcome"] ? "Welcome" : "Home"}>
+      <Stack.Navigator initialRouteName={state["welcome"] ? "Welcome" : "Home"} screenOptions={{headerTintColor:'#000'}}>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
