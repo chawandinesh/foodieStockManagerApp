@@ -6,6 +6,7 @@ import {
   ImageBackground,
   BackHandler,
   Alert,
+  StatusBar,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
@@ -98,6 +99,7 @@ export function Welcome(props) {
   return (
     <View>
       {/* <Text>HomeScreen</Text> */}
+      <StatusBar barStyle="light-content"/>
       <FlatList
         ref={flatListRef}
         showsHorizontalScrollIndicator={false}
