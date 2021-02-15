@@ -54,7 +54,7 @@ export function Welcome(props) {
           }}>
           <Text
             style={{
-              transform: [{rotate: '-90deg'}],
+              transform: [{rotate: '0deg'}],
               backgroundColor: 'red',
               position: 'absolute',
               left: index % 2 === 1 ? 1 : null,
@@ -114,7 +114,7 @@ export function Welcome(props) {
           flexDirection: 'row',
           justifyContent: 'center',
           position: 'absolute',
-          bottom: 10,
+          bottom: 20,
           left: 0,
           right: 0,
         }}>

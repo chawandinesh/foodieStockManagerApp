@@ -79,7 +79,7 @@ export function Form(props) {
   };
 
   return (
-    <KeyboardAwareScrollView style={{height: height}}>
+    <KeyboardAwareScrollView style={{height: "100%"}}>
       <ImageBackground
         resizeMode="stretch"
         //   blurRadius={0.4}
@@ -92,6 +92,7 @@ export function Form(props) {
             height: '100%',
             alignItems: 'center',
           }}>
+            {/*
           <TouchableOpacity
             onPress={() => pickImage()}
             style={{
@@ -112,15 +113,16 @@ export function Form(props) {
               <Icon name="image" type="entypo" size={height * 0.05} />
             )}
           </TouchableOpacity>
-
+*/}
           <View
             style={{
               backgroundColor: 'rgba(0,0,0,0.5)',
               width: width * 0.9,
-              height: height * 0.79,
+              height: height,
               alignSelf: 'center',
               alignItems: 'center',
             }}>
+         
             <View
               style={{
                 height: height * 0.06,
@@ -253,6 +255,28 @@ export function Form(props) {
                 numberOfLines={4}
               />
             </View>
+
+            <TouchableOpacity
+            onPress={() => pickImage()}
+            style={{
+              width: width * 0.3,
+              marginTop: height * 0.05,
+              borderWidth: 5,
+              height: height * 0.15,
+              backgroundColor: '#fff',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            {formState.image ? (
+              <Image
+                source={{uri: formState.image}}
+                resizeMode="stretch"
+                style={{height: width * 0.3, width: width * 0.3}}
+              />
+            ) : (
+              <Icon name="image" type="entypo" size={height * 0.05} />
+            )}
+          </TouchableOpacity>
 
             <View
               style={{
